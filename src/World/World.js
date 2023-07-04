@@ -11,7 +11,7 @@ let camera;
 let renderer;
 let scene;
 let loop;
-let wall_long = 3;
+let wall_long = 10;
 let wall_depth = 0.5;
 
 class World {
@@ -27,7 +27,7 @@ class World {
     //wall_right.position.x = wall_long;
     //wall_right.rotation.y = MathUtils.degToRad(90);
 
-    const light = createLights();
+    const light = createLights(20, 0, 0, 5, 1, Math.PI/10);
 
     //loop.updatables.push(floor);
 
