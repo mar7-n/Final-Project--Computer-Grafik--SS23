@@ -10,7 +10,7 @@ function createRectangle(length, width, depth) {
   const material = new MeshStandardMaterial({ color: 'brown' });
   const rectangle = new Mesh(geometry, material);
 
-  rectangle.rotation.set(-0.5, 0, 0);
+  //rectangle.rotation.set(MathUtils.degToRad(90), 0, 0);
 
   //const radiansPerSecond = MathUtils.degToRad(30);
 
