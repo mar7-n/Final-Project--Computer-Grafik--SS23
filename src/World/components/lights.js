@@ -2,7 +2,7 @@ import { DirectionalLight } from 'https://cdn.skypack.dev/three@0.132.2';
 
 function createLights() {
   // Create a directional light
-  const light = new DirectionalLight('white', 8);
+  const light = new DirectionalLight('brown', 8);
 
   // move the light right, up, and towards us
   light.position.set(10, 10, 10);
