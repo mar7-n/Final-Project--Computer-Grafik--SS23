@@ -6,6 +6,7 @@ import { createRenderer } from './systems/renderer.js';
 import { Resizer } from './systems/Resizer.js';
 import { Loop } from './systems/Loop.js';
 import { createRectangle } from './components/rectangle.js';
+import { MathUtils } from 'https://cdn.skypack.dev/three@0.132.2';
 
 let camera;
 let renderer;
@@ -23,9 +24,18 @@ class World {
     container.append(renderer.domElement);
 
     const floor = createRectangle(wall_long,wall_long,wall_depth);
+    floor.rotation.x = MathUtils.degToRad(90);
+
     const wall_right = createRectangle(wall_long,wall_long,wall_depth);
-    //wall_right.position.x = wall_long;
-    //wall_right.rotation.y = MathUtils.degToRad(90);
+    wall_right.position.set(wall_long/2-wall_depth/2,wall_long/2,0);
+    wall_right.rotation.y = MathUtils.degToRad(90);
+
+    const wall_left = createRectangle(wall_long,wall_long,wall_depth);
+    wall_left.position.set(-wall_long/2+wall_depth/2,wall_long/2,0);
+    wall_left.rotation.y = MathUtils.degToRad(90);
+
+    const wall_behind = createRectangle(wall_long,wall_long,wall_depth);
+    wall_behind.position.set(0,wall_long/2,-wall_long/2+wall_depth/2);
 
     const light = createLights(20, 0, 0, 5, 1, Math.PI/10);
 
@@ -33,6 +43,8 @@ class World {
 
     scene.add(floor, light);
     scene.add(wall_right, light);
+    scene.add(wall_left, light);
+    scene.add(wall_behind, light);
 
     const resizer = new Resizer(container, camera, renderer);
   }
