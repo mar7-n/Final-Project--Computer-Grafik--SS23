@@ -27,15 +27,15 @@ class World {
     floor.rotation.x = MathUtils.degToRad(90);
 
     const wall_right = createRectangle(wall_long,wall_long,wall_depth);
-    wall_right.position.set(wall_long/2-wall_depth/2,wall_long/2,0);
+    wall_right.position.set(wall_long/2-wall_depth/2,wall_long/2+wall_depth/2,0);
     wall_right.rotation.y = MathUtils.degToRad(90);
 
     const wall_left = createRectangle(wall_long,wall_long,wall_depth);
-    wall_left.position.set(-wall_long/2+wall_depth/2,wall_long/2,0);
+    wall_left.position.set(-wall_long/2+wall_depth/2,wall_long/2+wall_depth/2,0);
     wall_left.rotation.y = MathUtils.degToRad(90);
 
     const wall_behind = createRectangle(wall_long,wall_long,wall_depth);
-    wall_behind.position.set(0,wall_long/2,-wall_long/2+wall_depth/2);
+    wall_behind.position.set(0,wall_long/2+wall_depth/2,-wall_long/2+wall_depth/2);
 
     const light = createLights(50, 0, 2, 10, 1, Math.PI/2);
 
