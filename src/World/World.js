@@ -37,14 +37,17 @@ class World {
     const wall_behind = createRectangle(wall_long,wall_long,wall_depth);
     wall_behind.position.set(0,wall_long/2,-wall_long/2+wall_depth/2);
 
-    const light = createLights(20, 0, 0, 5, 1, Math.PI/10);
+    const light = createLights(50, 3, 2, 0, 1, Math.PI/10);
+    light.target.position.set(3, 2, -20);
 
     //loop.updatables.push(floor);
+    loop.updatables.push(light);
 
     scene.add(floor, light);
     scene.add(wall_right, light);
     scene.add(wall_left, light);
     scene.add(wall_behind, light);
+    scene.add(light.target);
 
     const resizer = new Resizer(container, camera, renderer);
   }
