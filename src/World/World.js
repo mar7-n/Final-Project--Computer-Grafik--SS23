@@ -37,7 +37,7 @@ class World {
     const wall_behind = createRectangle(wall_long,wall_long,wall_depth);
     wall_behind.position.set(0,wall_long/2,-wall_long/2+wall_depth/2);
 
-    const light = createLights(20, 0, 0, 5, 1, Math.PI/10);
+    const light = createLights(50, 0, 2, 10, 1, Math.PI/2);
 
     //loop.updatables.push(floor);
 
