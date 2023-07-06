@@ -14,11 +14,12 @@ let camera;
 let renderer;
 let scene;
 let loop;
+let wall_length = 5;
+let wall_depth = 0.5;
+let window_length = 1;
 let light;
 let target;
 let group;
-let wall_long = 10;
-let wall_depth = 0.5;
 
 class World {
   constructor(container) {
@@ -33,19 +34,14 @@ class World {
     group = createMeshGroup(target, camera);
     container.append(renderer.domElement);
 
-    const floor = createRectangle(wall_long,wall_long,wall_depth);
-    floor.rotation.x = MathUtils.degToRad(90);
+    const floor = createRectangle(wall_length,wall_length,wall_depth,[0,0,0],[90,0,0],0);
+    const roof = createRectangle(wall_length,wall_length,wall_depth,[0,wall_length+wall_depth,0],[90,0,0],0);
+    const wall_right = createRectangle(wall_length,wall_length,wall_depth,[wall_length/2+wall_depth/2,wall_length/2+wall_depth/2,0],[0,90,0],window_length);
+    const wall_left = createRectangle(wall_length,wall_length,wall_depth,[-wall_length/2-wall_depth/2,wall_length/2+wall_depth/2,0],[0,90,0],window_length);
+    const wall_behind = createRectangle(wall_length,wall_length,wall_depth,[0,wall_length/2+wall_depth/2,-wall_length/2-wall_depth/2],[0,0,0],0);
+    //const wall_front = createRectangle(wall_length,wall_length,wall_depth,[0,wall_length/2+wall_depth/2,wall_length/2+wall_depth/2],[0,0,0]);
+    //const window_left = createRectangle(window_length,window_length,wall_depth,[-wall_length/2-wall_depth/2,wall_length/2,0],[0,90,0]);
 
-    const wall_right = createRectangle(wall_long,wall_long,wall_depth);
-    wall_right.position.set(wall_long/2-wall_depth/2,wall_long/2+wall_depth/2,0);
-    wall_right.rotation.y = MathUtils.degToRad(90);
-
-    const wall_left = createRectangle(wall_long,wall_long,wall_depth);
-    wall_left.position.set(-wall_long/2+wall_depth/2,wall_long/2+wall_depth/2,0);
-    wall_left.rotation.y = MathUtils.degToRad(90);
-
-    const wall_behind = createRectangle(wall_long,wall_long,wall_depth);
-    wall_behind.position.set(0,wall_long/2+wall_depth/2,-wall_long/2+wall_depth/2);
 
     group.add(camera, light, target);
 
