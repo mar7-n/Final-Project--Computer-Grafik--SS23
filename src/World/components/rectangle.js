@@ -6,7 +6,7 @@ import {
 } from 'https://cdn.skypack.dev/three@0.132.2';
 import * as BufferGeometryUtils from "../../../vendor/BufferGeometryUtils.js";
 
-function createRectangle(length, width, depth, position, angle) {
+function createRectangle(length, width, depth, position) {
   var rectangle;
   /*if (additional_object != 0) {
     var geometry = new BoxBufferGeometry(length, width, depth);
