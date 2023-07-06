@@ -1,6 +1,8 @@
 import { createCamera } from './components/camera.js';
 import { createLights } from './components/lights.js';
 import { createScene } from './components/scene.js';
+import { createMeshGroup } from './components/group.js';
+import { createTarget } from './components/target.js';
 
 import { createRenderer } from './systems/renderer.js';
 import { Resizer } from './systems/Resizer.js';
@@ -13,8 +15,11 @@ let renderer;
 let scene;
 let loop;
 let wall_length = 5;
-let window_length = 1;
 let wall_depth = 0.5;
+let window_length = 1;
+let light;
+let target;
+let group;
 
 class World {
   constructor(container) {
@@ -22,6 +27,11 @@ class World {
     renderer = createRenderer();
     scene = createScene();
     loop = new Loop(camera, scene, renderer);
+    light = createLights(50, 1, Math.PI/10);
+    target = createTarget();
+    light.target = target;
+    camera.lookAt = target;
+    group = createMeshGroup(target, camera);
     container.append(renderer.domElement);
 
     const floor = createRectangle(wall_length,wall_length,wall_depth,[0,0,0],[90,0,0],0);
@@ -33,16 +43,15 @@ class World {
     //const window_left = createRectangle(window_length,window_length,wall_depth,[-wall_length/2-wall_depth/2,wall_length/2,0],[0,90,0]);
 
 
-    const light = createLights(50, 0, 2, 10, 1, Math.PI/2);
+    group.add(camera, light, target);
 
-    //loop.updatables.push(floor);
+    loop.updatables.push(group);
 
-    scene.add(floor, light);
-    scene.add(wall_right, light);
-    scene.add(wall_left, light);
-    scene.add(wall_behind, light);
-    scene.add(roof, light);
-    //scene.add(wall_front, light);
+    scene.add(floor);
+    scene.add(wall_right);
+    scene.add(wall_left);
+    scene.add(wall_behind);
+    scene.add(group);
 
     const resizer = new Resizer(container, camera, renderer);
   }

@@ -27,18 +27,6 @@ function createRectangle(length, width, depth, position, angle, additional_objec
   rectangle.position.set(position[0],position[1],position[2]);
   rectangle.rotation.set(MathUtils.degToRad(angle[0]),MathUtils.degToRad(angle[1]),MathUtils.degToRad(angle[2]));
 
-  //rectangle.rotation.set(MathUtils.degToRad(90), 0, 0);
-
-  //const radiansPerSecond = MathUtils.degToRad(30);
-
-  // this method will be called once per frame
-  /*rectangle.tick = (delta) => {
-    // increase the cube's rotation each frame
-    rectangle.rotation.z += radiansPerSecond * delta;
-    rectangle.rotation.x += radiansPerSecond * delta;
-    rectangle.rotation.y += radiansPerSecond * delta;
-  };*/
-
   return rectangle;
 }
 
