@@ -1,11 +1,12 @@
 import { loadObject } from './components/models/models.js';
 import { createCamera } from './components/camera.js';
-import { createLights } from './components/lights.js';
+import { createLights } from './components/flashlights.js';
 import { createScene } from './components/scene.js';
 import { createGroupCamera } from './components/groupCameraAndLight.js';
 import { createGroupCoffin } from './components/groupCoffin.js';
 import { createTarget } from './components/target.js';
 import { createCylinder } from './components/cylinder.js';
+import { createPointLights } from './components/pointlight.js';
 
 import { createRenderer } from './systems/renderer.js';
 import { Resizer } from './systems/Resizer.js';
@@ -17,6 +18,7 @@ import { createMirror } from './components/mirror.js';
 import {
   CubeCamera, WebGLRenderTarget,
 } from 'https://cdn.skypack.dev/three@0.132.2';
+import { Color } from 'https://cdn.skypack.dev/three@0.132.2';
 
 let camera;
 let renderer;
@@ -34,6 +36,7 @@ let groupCoffin;
 let cylinderUnderCoffin;
 let stoneUnderCoffin;
 let mirror;
+let moonLight;
 
 class World {
   constructor(container) {
@@ -46,6 +49,8 @@ class World {
     target = createTarget();
     light.target = target;
     groupCameraAndLight = createGroupCamera(target, camera);
+
+    moonLight = createPointLights();
 
     var textureLoader = new TextureLoader();
     var stoneWall = textureLoader.load('/assets/images/xboibes_8K_Albedo.jpg');
@@ -84,6 +89,7 @@ class World {
 
     loop.updatables.push(groupCameraAndLight);
     loop.updatables.push(groupCoffin);
+    loop.updatables.push(moonLight);
 
     /*var mirrorRenderTarget = new WebGLRenderTarget(2, 3);
     mirrorRenderTarget.texture.generateMipmaps = false;
@@ -111,8 +117,11 @@ class World {
     scene.add(wall_front);
     scene.add(wall_front_symbols);
     scene.add(roof);
+    scene.add(moonLight);
 
     scene.add(groupCameraAndLight);
+
+    scene.background = new Color( 0x000011 );
 
     const resizer = new Resizer(container, camera, renderer);
   }
