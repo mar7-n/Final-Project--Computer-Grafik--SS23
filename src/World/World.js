@@ -1,4 +1,4 @@
-import { loadObject } from './components/pharaoh/models.js';
+import { loadObject } from './components/models/models.js';
 import { createCamera } from './components/camera.js';
 import { createLights } from './components/lights.js';
 import { createScene } from './components/scene.js';
@@ -35,7 +35,6 @@ class World {
     scene = createScene();
     loop = new Loop(camera, scene, renderer);
     
-    
     light = createLights(50, 1, Math.PI/10);
     target = createTarget();
     light.target = target;
@@ -45,6 +44,7 @@ class World {
     cylinderUnderCoffin = createCylinder(2, 2, 1, 100);
     stoneUnderCoffin = createRectangle(4,2.5,1.5,[0,0.5,0]);
     container.append(renderer.domElement);
+
 
     // x->length | y-> width | z-> depth
     const floor = createRectangle(wall_long,wall_depth,wall_long,[0,0,0]);
@@ -61,7 +61,6 @@ class World {
     const wall_left_u = createRectangle(wall_depth,(wall_short-window_length)/2,window_length,[-wall_long/2-wall_depth/2,wall_short+wall_depth/2-(wall_short-window_length)/4,-wall_long/2+space+window_length/2]);
     const wall_behind = createRectangle(wall_long,wall_short,wall_depth,[0,wall_short/2+wall_depth/2,-wall_long/2-wall_depth/2]);
     const wall_front = createRectangle(wall_long,wall_short,wall_depth,[0,wall_short/2+wall_depth/2,wall_long/2+wall_depth/2]);
-
 
     groupCameraAndLight.add(camera, light, target);
 
@@ -87,10 +86,11 @@ class World {
   }
 
   async init() {
-    const { coffin, window1, window2 } = await loadObject();
+    const { coffin, window1, window2, tree1, tree2} = await loadObject();
     groupCoffin.add(coffin, cylinderUnderCoffin, stoneUnderCoffin);
     scene.add(groupCoffin);
     scene.add(window1, window2);
+    scene.add(tree1, tree2);
   }
 
   render() {
