@@ -1,8 +1,9 @@
-import { loadObject } from './components/pharaoh/coffin.js';
+import { loadObject } from './components/pharaoh/models.js';
 import { createCamera } from './components/camera.js';
 import { createLights } from './components/lights.js';
 import { createScene } from './components/scene.js';
-import { createMeshGroup } from './components/groupCameraAndLight.js';
+import { createGroupCamera } from './components/groupCameraAndLight.js';
+import { createGroupCoffin } from './components/groupCoffin.js';
 import { createTarget } from './components/target.js';
 import { createCylinder } from './components/cylinder.js';
 
@@ -15,19 +16,17 @@ let camera;
 let renderer;
 let scene;
 let loop;
-<<<<<<< HEAD
-let wall_length = 10;
-=======
 let wall_long = 20;
 let wall_short = 7;
->>>>>>> 17e89cf9bf118cf2c634ad29796fa2880adf5250
 let wall_depth = 0.5;
 let window_length = 3;
 let space = 2;
 let light;
 let target;
-let group;
-let cylinder;
+let groupCameraAndLight;
+let groupCoffin;
+let cylinderUnderCoffin;
+let stoneUnderCoffin;
 
 class World {
   constructor(container) {
@@ -35,14 +34,17 @@ class World {
     renderer = createRenderer();
     scene = createScene();
     loop = new Loop(camera, scene, renderer);
+    
+    
     light = createLights(50, 1, Math.PI/10);
     target = createTarget();
     light.target = target;
-    camera.lookAt = target;
-    group = createMeshGroup(target, camera);
-    container.append(renderer.domElement);
-    cylinder = createCylinder(2, 2, 1, 100);
+    groupCameraAndLight = createGroupCamera(target, camera);
 
+    groupCoffin = createGroupCoffin();
+    cylinderUnderCoffin = createCylinder(2, 2, 1, 100);
+    stoneUnderCoffin = createRectangle(4,2.5,1.5,[0,0.5,0]);
+    container.append(renderer.domElement);
 
     // x->length | y-> width | z-> depth
     const floor = createRectangle(wall_long,wall_depth,wall_long,[0,0,0]);
@@ -61,9 +63,10 @@ class World {
     const wall_front = createRectangle(wall_long,wall_short,wall_depth,[0,wall_short/2+wall_depth/2,wall_long/2+wall_depth/2]);
 
 
-    group.add(camera, light, target);
+    groupCameraAndLight.add(camera, light, target);
 
-    loop.updatables.push(group);
+    loop.updatables.push(groupCameraAndLight);
+    loop.updatables.push(groupCoffin);
 
     scene.add(floor);
     scene.add(wall_right_l);
@@ -78,15 +81,16 @@ class World {
     scene.add(wall_front);
     scene.add(roof);
 
-    scene.add(cylinder);
-    scene.add(group);
+    scene.add(groupCameraAndLight);
 
     const resizer = new Resizer(container, camera, renderer);
   }
 
   async init() {
-    const { coffin } = await loadObject();
-    scene.add(coffin);
+    const { coffin, window1, window2 } = await loadObject();
+    groupCoffin.add(coffin, cylinderUnderCoffin, stoneUnderCoffin);
+    scene.add(groupCoffin);
+    scene.add(window1, window2);
   }
 
   render() {

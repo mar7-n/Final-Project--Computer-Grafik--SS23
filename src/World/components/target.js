@@ -4,7 +4,7 @@ function createTarget() {
   // Create a directional light
   const target = new Object3D();
 
-  target.position.set(0, 2, -20);
+  target.position.set(0, 3.5, -20);
 
   return target;
 }
