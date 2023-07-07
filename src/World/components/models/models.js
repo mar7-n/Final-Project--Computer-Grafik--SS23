@@ -16,7 +16,10 @@ async function loadObject() {
   const coffin = setupModel(coffinData);
   coffin.position.set(-0.8, 4.1, -1);
   coffin.scale.set(0.3, 0.3, 0.3);
-  coffin.castShadow = true;
+  coffin.traverse(function(node) {
+    if(node.isMesh) 
+    node.castShadow = true;
+  });
 
   const window1 = setupModel(window1Data);
   window1.position.set(-10.2, 4, -6.45);
@@ -29,16 +32,19 @@ async function loadObject() {
   window2.scale.set(2, 2.5, 2);
 
   const tree1 = setupModel(treeData);
-  tree1.position.set(-18, 1, -5);
+  tree1.position.set(-18, 1, -4.5);
   tree1.rotation.z = MathUtils.degToRad(90);
   tree1.scale.set(2, 2, 2);
-  tree1.castShadow = true;
+  tree1.traverse(function(node) {
+    if(node.isMesh) 
+    node.castShadow = true;
+  });
 
   const tree2 = tree1.clone();
-  tree1.position.set(18, 1, 2.5);
-  tree1.rotation.z = MathUtils.degToRad(90);
-  tree1.scale.set(2, 2, 2);
-  tree2.castShadow = true;
+  tree2.position.set(18, 1, 2.5);
+  tree2.rotation.z = MathUtils.degToRad(90);
+  tree2.scale.set(2, 2, 2);
+
 
   return  { coffin, window1, window2, tree1, tree2};
 }

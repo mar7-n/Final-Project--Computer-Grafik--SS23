@@ -10,7 +10,10 @@ function createLights(brightness, penumbra, angle) {
   light.shadow.camera.near = 1;
   light.shadow.camera.far = 10;
 
-  light.position.set(0, -1, 0);
+  light.shadow.radius = 10;
+  light.shadow.bias = -0.07;
+
+  light.position.set(0, -0.5, 0);
 
   light.angle = angle; // Angle of the spotlight's cone
   light.penumbra = penumbra; // Softness of the spotlight's edges

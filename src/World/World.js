@@ -46,7 +46,7 @@ class World {
     
     light = createLights(50, 1, Math.PI/10);
     mirrorLight = createLights(50, 1, Math.PI/10);
-    mirrorLight.position.y = 12.5;
+    mirrorLight.position.y = 12;
     target = createTarget();
     mirrorTarget = createTarget();
     mirrorTarget.position.y = - target.position.y;
