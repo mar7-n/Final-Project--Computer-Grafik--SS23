@@ -45,7 +45,6 @@ class World {
     stoneUnderCoffin = createRectangle(4,2.5,1.5,[0,0.5,0]);
     container.append(renderer.domElement);
 
-
     // x->length | y-> width | z-> depth
     const floor = createRectangle(wall_long,wall_depth,wall_long,[0,0,0]);
     const roof = createRectangle(wall_long,wall_depth,wall_long,[0,wall_short+wall_depth,0]);
@@ -90,7 +89,7 @@ class World {
     groupCoffin.add(coffin, cylinderUnderCoffin, stoneUnderCoffin);
     scene.add(groupCoffin);
     scene.add(window1, window2);
-    scene.add(tree1, tree2);
+    //scene.add(tree1, tree2);
   }
 
   render() {
