@@ -15,9 +15,6 @@ import { createRectangle } from './components/rectangle.js';
 import { TextureLoader } from '../../vendor/loaders/TextureLoader.js'
 import { createMirror } from './components/mirror.js';
 
-import {
-  CubeCamera, WebGLRenderTarget,
-} from 'https://cdn.skypack.dev/three@0.132.2';
 import { Color } from 'https://cdn.skypack.dev/three@0.132.2';
 
 let camera;
@@ -30,7 +27,9 @@ let wall_depth = 0.5;
 let window_length = 3;
 let space = 2;
 let light;
+let mirrorLight;
 let target;
+let mirrorTarget;
 let groupCameraAndLight;
 let groupCoffin;
 let cylinderUnderCoffin;
@@ -46,9 +45,14 @@ class World {
     loop = new Loop(camera, scene, renderer);
     
     light = createLights(50, 1, Math.PI/10);
+    mirrorLight = createLights(50, 1, Math.PI/10);
+    mirrorLight.position.y = 12.5;
     target = createTarget();
+    mirrorTarget = createTarget();
+    mirrorTarget.position.y = - target.position.y;
     light.target = target;
-    groupCameraAndLight = createGroupCamera(target, camera);
+    mirrorLight.target = mirrorTarget;
+    groupCameraAndLight = createGroupCamera(target, camera, mirrorLight, mirrorTarget);
 
     moonLight = createPointLights();
 
@@ -85,18 +89,13 @@ class World {
     const wall_front = createRectangle(wall_long,wall_short,wall_depth,[0,wall_short/2+wall_depth/2,wall_long/2+wall_depth/2],stoneWall);
     const wall_front_symbols = createRectangle(wall_long,window_length+0.5,wall_depth,[0,wall_short/2+wall_depth/2+0.2,wall_long/2+wall_depth/2-0.3],egyptianImage2_long);
 
-    groupCameraAndLight.add(camera, light, target);
+    groupCameraAndLight.add(camera, light, target, mirrorLight, mirrorTarget);
 
     loop.updatables.push(groupCameraAndLight);
     loop.updatables.push(groupCoffin);
     loop.updatables.push(moonLight);
 
-    /*var mirrorRenderTarget = new WebGLRenderTarget(2, 3);
-    mirrorRenderTarget.texture.generateMipmaps = false;
-    mirrorCamera = new CubeCamera(1,1000,mirrorRenderTarget); 
-    mirrorCamera.position.set(0,4,0);
-    scene.add(mirrorCamera);*/
-    mirror = createMirror(3,2);
+    mirror = createMirror(20,20);
     scene.add(mirror);
 
     scene.add(floor);
@@ -117,6 +116,7 @@ class World {
     scene.add(wall_front);
     scene.add(wall_front_symbols);
     scene.add(roof);
+
     scene.add(moonLight);
 
     scene.add(groupCameraAndLight);
@@ -137,7 +137,6 @@ class World {
   render() {
     // draw a single frame
     renderer.render(scene, camera);
-    //mirrorCamera.updateCubeMap(renderer,scene);
   }
 
   start() {

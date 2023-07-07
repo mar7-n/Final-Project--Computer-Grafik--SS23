@@ -1,6 +1,6 @@
 import { Group, MathUtils } from 'https://cdn.skypack.dev/three@0.132.2';
 
-function createGroupCamera(target, camera) {
+function createGroupCamera(target, camera, mirrorLight, mirrorTarget) {
     const group = new Group();
 
     let breathDirection = 1;
@@ -20,11 +20,11 @@ function createGroupCamera(target, camera) {
     
         group.rotation.y -= MathUtils.degToRad(deltaMove.x) * rotationSpeed;
         var newValuesCamRotation = camera.rotation.x - MathUtils.degToRad(deltaMove.y) * rotationSpeed/5;
-        if(newValuesCamRotation  > -Math.PI/3 && newValuesCamRotation < Math.PI/3) {
+        if(newValuesCamRotation > -Math.PI/3 && newValuesCamRotation < Math.PI/3) {
             target.position.y -= deltaMove.y * rotationSpeed/10;
+            mirrorTarget.position.y += deltaMove.y * rotationSpeed/10;
             camera.rotation.x = newValuesCamRotation;
         }
-
     };
 
     return group;

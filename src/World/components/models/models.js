@@ -32,11 +32,13 @@ async function loadObject() {
   tree1.position.set(-18, 1, -5);
   tree1.rotation.z = MathUtils.degToRad(90);
   tree1.scale.set(2, 2, 2);
+  tree1.castShadow = true;
 
   const tree2 = tree1.clone();
   tree1.position.set(18, 1, 2.5);
   tree1.rotation.z = MathUtils.degToRad(90);
   tree1.scale.set(2, 2, 2);
+  tree2.castShadow = true;
 
   return  { coffin, window1, window2, tree1, tree2};
 }
