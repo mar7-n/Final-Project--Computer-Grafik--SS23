@@ -52,13 +52,11 @@ class World {
     const wall_right_l = createRectangle(wall_depth,wall_short,wall_long-window_length-space,[wall_long/2+wall_depth/2,wall_short/2+wall_depth/2,(-window_length-space)/2]);
     const wall_right_r = createRectangle(wall_depth,wall_short,space,[wall_long/2+wall_depth/2,wall_short/2+wall_depth/2,wall_long/2-space/2]);
     const wall_right_d = createRectangle(wall_depth,(wall_short-window_length)/2,window_length,[wall_long/2+wall_depth/2,(wall_short-window_length)/4+wall_depth/2,wall_long/2-space-window_length/2]);
-    const wall_right_u = createRectangle(wall_depth,(wall_short-window_length)/2,window_length,[wall_long/2+wall_depth/2,wall_short+wall_depth/2-(wall_short-window_length)/4,wall_long/2-space-window_length/2]);
-    //const wall_right_l = createRectangle(wall_length,wall_length,wall_depth,[wall_length/2+wall_depth/2,wall_length/2+wall_depth/2,0],[0,90,0]);
-    //const wall_right_l = createRectangle(wall_length,wall_length,wall_depth,[wall_length/2+wall_depth/2,wall_length/2+wall_depth/2,0],[0,90,0]);
+    const wall_right_u = createRectangle(wall_depth,(wall_short-4)/2,window_length,[wall_long/2+wall_depth/2,wall_short+wall_depth/2-(wall_short-window_length)/4+0.5,wall_long/2-space-window_length/2]);
     const wall_left_r = createRectangle(wall_depth,wall_short,wall_long-window_length-space,[-wall_long/2-wall_depth/2,wall_short/2+wall_depth/2,(window_length+space)/2]);
     const wall_left_l = createRectangle(wall_depth,wall_short,space,[-wall_long/2-wall_depth/2,wall_short/2+wall_depth/2,-wall_long/2+space/2]);
     const wall_left_d = createRectangle(wall_depth,(wall_short-window_length)/2,window_length,[-wall_long/2-wall_depth/2,(wall_short-window_length)/4+wall_depth/2,-wall_long/2+space+window_length/2]);
-    const wall_left_u = createRectangle(wall_depth,(wall_short-window_length)/2,window_length,[-wall_long/2-wall_depth/2,wall_short+wall_depth/2-(wall_short-window_length)/4,-wall_long/2+space+window_length/2]);
+    const wall_left_u = createRectangle(wall_depth,(wall_short-4)/2,window_length,[-wall_long/2-wall_depth/2,wall_short+wall_depth/2-(wall_short-window_length)/4+0.5,-wall_long/2+space+window_length/2]);
     const wall_behind = createRectangle(wall_long,wall_short,wall_depth,[0,wall_short/2+wall_depth/2,-wall_long/2-wall_depth/2]);
     const wall_front = createRectangle(wall_long,wall_short,wall_depth,[0,wall_short/2+wall_depth/2,wall_long/2+wall_depth/2]);
 
