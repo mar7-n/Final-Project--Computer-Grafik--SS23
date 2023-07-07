@@ -9,6 +9,7 @@ function createCylinder(radiusTop, radiusBottom, height, radialSegments, texture
   const material = new MeshStandardMaterial({ map: texture });
 
   const cylinder = new Mesh(geometry, material);
+  cylinder.castShadow = true;
 
   return cylinder;
 }

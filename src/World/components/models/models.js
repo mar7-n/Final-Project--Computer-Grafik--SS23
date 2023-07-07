@@ -16,6 +16,7 @@ async function loadObject() {
   const coffin = setupModel(coffinData);
   coffin.position.set(-0.8, 4.1, -1);
   coffin.scale.set(0.3, 0.3, 0.3);
+  coffin.castShadow = true;
 
   const window1 = setupModel(window1Data);
   window1.position.set(-10.2, 4, -6.45);

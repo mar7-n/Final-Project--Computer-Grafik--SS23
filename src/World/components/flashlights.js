@@ -4,6 +4,12 @@ function createLights(brightness, penumbra, angle) {
   // Create a directional light
   const light = new SpotLight('white', brightness);
 
+  light.castShadow = true;
+  light.shadow.mapSize.width = 1024;
+  light.shadow.mapSize.height = 1024;
+  light.shadow.camera.near = 1;
+  light.shadow.camera.far = 10;
+
   light.position.set(0, -1, 0);
 
   light.angle = angle; // Angle of the spotlight's cone
