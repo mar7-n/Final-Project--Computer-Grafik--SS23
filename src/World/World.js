@@ -12,6 +12,11 @@ import { Resizer } from './systems/Resizer.js';
 import { Loop } from './systems/Loop.js';
 import { createRectangle } from './components/rectangle.js';
 import { TextureLoader } from '../../vendor/loaders/TextureLoader.js'
+import { createMirror } from './components/mirror.js';
+
+import {
+  CubeCamera, WebGLRenderTarget,
+} from 'https://cdn.skypack.dev/three@0.132.2';
 
 let camera;
 let renderer;
@@ -28,6 +33,7 @@ let groupCameraAndLight;
 let groupCoffin;
 let cylinderUnderCoffin;
 let stoneUnderCoffin;
+let mirror;
 
 class World {
   constructor(container) {
@@ -79,6 +85,14 @@ class World {
     loop.updatables.push(groupCameraAndLight);
     loop.updatables.push(groupCoffin);
 
+    /*var mirrorRenderTarget = new WebGLRenderTarget(2, 3);
+    mirrorRenderTarget.texture.generateMipmaps = false;
+    mirrorCamera = new CubeCamera(1,1000,mirrorRenderTarget); 
+    mirrorCamera.position.set(0,4,0);
+    scene.add(mirrorCamera);*/
+    mirror = createMirror(3,2);
+    scene.add(mirror);
+
     scene.add(floor);
     scene.add(wall_right_l);
     scene.add(wall_right_l_symbols);
@@ -108,12 +122,13 @@ class World {
     groupCoffin.add(coffin, cylinderUnderCoffin, stoneUnderCoffin);
     scene.add(groupCoffin);
     scene.add(window1, window2);
-    //scene.add(tree1, tree2);
+    scene.add(tree1, tree2);
   }
 
   render() {
     // draw a single frame
     renderer.render(scene, camera);
+    //mirrorCamera.updateCubeMap(renderer,scene);
   }
 
   start() {
