@@ -59,10 +59,8 @@ class World {
     var textureLoader = new TextureLoader();
     var stoneWall = textureLoader.load('/assets/images/xboibes_8K_Albedo.jpg');
     var marmol = textureLoader.load('/assets/images/black-gold-marble-texture.jpg');
-    var egyptianLetters = textureLoader.load('/assets/images/360_F_444806827_qItmWKBVDs3aHFlATYMuWZZZCx0VVxUH.jpg');
-    var egyptianImage = textureLoader.load('/assets/images/19713.jpg');
     var egyptianImage2 = textureLoader.load('/assets/images/ancient-egypt-hieroglyphics-on-wall-700-194914080.jpg');
-    var egyptianImage2_long = textureLoader.load('/assets/images/WhatsApp Image 2023-07-07 at 14.38.11.jpeg');
+    var egyptianImage2_long = textureLoader.load('/assets/images/egypt-text.jpeg');
 
     groupCoffin = createGroupCoffin();
     cylinderUnderCoffin = createCylinder(2, 2, 1, 100,marmol);
