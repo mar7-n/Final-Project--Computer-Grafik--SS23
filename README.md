@@ -1,12 +1,13 @@
 # Final Project | Computer Grafik | Medieninformatik SS23
 
+## Beschreibung des Projekts:
 Unser Projekt handelt von einem verlassenen Raum in Ägypten, in dem sich der Pharao in der Mitte zusammen mit ägyptischen Schriftzeichen und Hieroglyphen an der Wand befindet.
 Es geht darum, dass eine Person mit einer Taschenlampe (da es keine Beleuchtung gibt) ängstlich in den Raum geht. Ihre aufgeregte Atmung ist durch das ständige Auf und Ab des Taschenlampenlichts zu erkennen. Durch Klicken mit der Maus kann die Person die Taschenlampe in jede gewünschte Richtung lenken.
 Durch das Fenster sind Bäume zu sehen, und in regelmäßigen Abständen erscheinen Blitze während des Sturms.
 
 Die Arbeit wurde von Martin Bonhomme und Anh Phuc Hoang für das Fach Computergrafik im dritten Semester des Bachelor-Studiengangs Medieninformatik durchgeführt.
 
-Zu den technischen Herausforderungen, die bei der Durchführung des Projekts zu bewältigen sind, gehören die folgenden:
+### Technischen Herausforderungen:
 * Platzierung der Wände, Decke und Boden des Raumes: Anfangs platzierten wir die Wände als Würfel, der sich überlappte, was zu seltsamen Schatten führte. Daher änderten wir es, so dass die Seiten des Würfels nur über eine Kante miteinander verbunden sind. Im Bild ist dies besser zu erkennen:
 ![WhatsApp Image 2023-07-05 at 09 23 36](https://github.com/mar7-n/Final-Project--Computer-Grafik--SS23/assets/116806411/8efa758d-1574-4a5d-9d62-e8fe0971bbe3)
 * Maße des Raums: Anfangs wussten wir nicht genau, welche Maße wir für den Raum verwenden wollten. Daher entschieden wir uns für eine generische Lösung, basierend auf Variablen, die die Maße der Wände enthielten. Dadurch mussten wir bei einer späteren Änderung der Maße nicht den gesamten Code ändern, sondern nur den Wert der Konstanten anpassen.
