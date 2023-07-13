@@ -1,4 +1,4 @@
-# Final Project | Computer Grafik | Medieninformatik SS23
+# Computer Grafik | Final Project | Medieninformatik SS23 | HTW Berlin 
 
 ## Beschreibung des Projekts:
 Unser Projekt handelt von einem verlassenen Raum in Ägypten, in dem sich der Pharao in der Mitte zusammen mit ägyptischen Schriftzeichen und Hieroglyphen an der Wand befindet.
